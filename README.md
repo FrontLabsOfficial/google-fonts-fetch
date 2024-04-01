@@ -1,7 +1,7 @@
-## @frontlabs/google-fonts-fetch
+## @frontlabsofficial/google-fonts-fetch
 
 ### Description
-`@frontlabs/google-fonts-fetch` is a lightweight and efficient package designed to simplify the process of self-host Google Fonts. By leveraging this package, developers can effortlessly download Google Fonts to their local environment, enabling seamless integration and improved website performance.
+`@frontlabsofficial/google-fonts-fetch` is a lightweight and efficient package designed to simplify the process of self-host Google Fonts. By leveraging this package, developers can effortlessly download Google Fonts to their local environment, enabling seamless integration and improved website performance.
 
 ## Motivation
 While working on improving PageSpeed, I discovered the significant enhancements brought by Google Fonts v2. Everything seemed to become smoother and lighter, from font sizes to the ability to reuse various font weights. Despite my efforts to find a suitable API or package for immediate use, I came up empty-handed.
@@ -19,13 +19,13 @@ This project aims to harness the efficiencies of Google Fonts v2, offering a str
 
 ## Installation
   ```bash
-  npm install @frontlabs/google-fonts-fetch
+  npm install @frontlabsofficial/google-fonts-fetch
   ```
 
 ## Usage
 ### Create Google Fonts Fetch
 ```js
-import { createGoogleFontsFetch } from '@frontlabs/google-fonts-fetch'
+import { createGoogleFontsFetch } from '@frontlabsofficial/google-fonts-fetch'
 const fetch = createGoogleFontsFetch({
   base: 'https://test.com',
   metadata: {
