@@ -1,0 +1,72 @@
+{
+  "name": "@frontlabs/google-fonts-fetch",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.15.3",
+  "description": "A lightweight utility for seamlessly integrating Google Fonts into web projects, optimizing web performance, and enhancing user experience.",
+  "author": "ErikPham <phucpm.it@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrontLabsOfficial/google-fonts-fetch.git"
+  },
+  "keywords": ["google", "google-fonts", "fonts", "webfont", "webfonts", "font", "fonts", "fontface", "font-face", "pagespeed"],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp",
+    "ci:publish": "npm publish --access public --no-git-check",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "consola": "^3.2.3",
+    "ofetch": "^1.3.4"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/ni": "^0.21.12",
+    "@types/node": "^20.11.19",
+    "bumpp": "^9.3.0",
+    "eslint": "^8.56.0",
+    "esno": "^4.0.0",
+    "lint-staged": "^15.2.2",
+    "pnpm": "^8.15.3",
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0",
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
