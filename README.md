@@ -64,7 +64,7 @@ fetch.multiple([
 
 ### Download all fonts
 ```js
-helper.all()
+fetch.all()
 ```
 
 ## Contributing
