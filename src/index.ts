@@ -208,7 +208,7 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
           multipleResult = await onError(multiple, fontOptions || {}, options.chunk.retry, options.chunk.retryDelay)
         }
 
-        result.concat(...multipleResult)
+        result.push(...multipleResult)
         if (baseOptions.chunk.delay) {
           await delay(baseOptions.chunk.delay)
         }
