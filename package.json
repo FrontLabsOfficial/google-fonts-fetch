@@ -1,7 +1,7 @@
 {
   "name": "@frontlabsofficial/google-fonts-fetch",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@8.15.3",
   "description": "A lightweight utility for seamlessly integrating Google Fonts into web projects, optimizing web performance, and enhancing user experience.",
   "author": "ErikPham <phucpm.it@gmail.com>",
@@ -10,7 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/FrontLabsOfficial/google-fonts-fetch.git"
   },
-  "keywords": ["google", "google-fonts", "fonts", "webfont", "webfonts", "font", "fonts", "fontface", "font-face", "pagespeed"],
+  "keywords": [
+    "google",
+    "google-fonts",
+    "fonts",
+    "webfont",
+    "webfonts",
+    "font",
+    "fonts",
+    "fontface",
+    "font-face",
+    "pagespeed"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {
