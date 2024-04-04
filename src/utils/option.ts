@@ -4,7 +4,7 @@ import type {
   GoogleFontsFetchOptions,
   ResolvedGoogleFontsFetchOptions,
 } from '../types'
-import { extend } from './common'
+import { extend, mergeDeep } from './common'
 
 /**
  * Normalize Google Font Helper options
@@ -39,11 +39,10 @@ export function normalizeOptions(options?: GoogleFontsFetchOptions): ResolvedGoo
       outDir: './output/fonts',
     },
   }
-  return extend(
-    {},
+  return mergeDeep(
     base,
     options || {},
-  )
+  ) as ResolvedGoogleFontsFetchOptions
 }
 
 /**
