@@ -26,22 +26,7 @@ This project aims to harness the efficiencies of Google Fonts v2, offering a str
 ### Create Google Fonts Fetch
 ```js
 import { createGoogleFontsFetch } from '@frontlabsofficial/google-fonts-fetch'
-const fetch = createGoogleFontsFetch({
-  base: 'https://test.com',
-  metadata: {
-    name: 'metadata.json',
-    override: false,
-    outputPath: path.resolve('.output/metadata'),
-  },
-  outputPath: path.resolve('.output'),
-  css: {
-    write: true,
-    combie: true,
-  },
-  font: {
-    outputPath: path.resolve('.output/fonts'),
-  },
-})
+const fetch = createGoogleFontsFetch()
 ```
 ### Download single font
 ```js
