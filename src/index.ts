@@ -207,7 +207,7 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
           extend(fontOptions, { css: { write: false, merge: false } })
         }
 
-        let multipleResult: FetchFontsResult
+        let multipleResult: FetchFontsResult = []
         try {
           multipleResult = await context.multiple(multiple, fontOptions)
         }
@@ -217,10 +217,14 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
           }
           catch (e) {
             errors.push(...chunkFamilies[i])
+            multipleResult = []
           }
         }
 
-        success.push(...multipleResult)
+        if (multipleResult.length > 0) {
+          success.push(...multipleResult)
+        }
+
         if (baseOptions.chunk.delay) {
           await delay(baseOptions.chunk.delay)
         }
