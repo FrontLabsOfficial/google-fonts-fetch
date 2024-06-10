@@ -207,7 +207,7 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
           extend(fontOptions, { css: { write: false, merge: false } })
         }
 
-        let multipleResult
+        let multipleResult: FetchFontsResult
         try {
           multipleResult = await context.multiple(multiple, fontOptions)
         }
