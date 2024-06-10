@@ -100,9 +100,7 @@ export function buildVariables(options: Required<FontOptions>, metadata: Record<
   }
 
   const weightVariables = weight.filter(item => metadata[`${item}`]).map(String)
-  const italicVariables = hasItalic
-    ? weight.filter(item => metadata[`${item}i`]).map(String)
-    : []
+  const italicVariables = hasItalic ? weight.filter(item => metadata[`${item}i`]).map(item => `${item}i`) : []
 
   return { weightVariables, italicVariables }
 }

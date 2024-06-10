@@ -62,7 +62,7 @@ export interface GoogleFontsFetch {
   ) => Promise<Record<string, string>>
   metadata: (override?: boolean) => Promise<any>
   multiple: (fonts: Array<{ name: string, options?: Partial<FontOptions & FetchFontOptions>, metadata?: Record<string, FontMetadata> }>) => Promise<FetchFontsResult>
-  all: (options?: Partial<FontOptions & FetchFontOptions>) => Promise<FetchFontsResult>
+  all: (options?: Partial<FontOptions & FetchFontOptions>) => Promise<{ success: FetchFontsResult, errors: Array<Family> }>
 }
 
 export interface FontOptions {
