@@ -1,7 +1,7 @@
 {
   "name": "@frontlabsofficial/google-fonts-fetch",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "packageManager": "pnpm@8.15.3",
   "description": "A lightweight utility for seamlessly integrating Google Fonts into web projects, optimizing web performance, and enhancing user experience.",
   "author": "ErikPham <phucpm.it@gmail.com>",
