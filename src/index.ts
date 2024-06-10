@@ -167,7 +167,13 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
      * @param fontOptions - The font options.
      * @returns {Promise<FetchFontResult>} A promise that resolves with the downloaded fonts.
      */
-    async all(fontOptions?: Partial<FontOptions & FetchFontOptions>): Promise<FetchFontsResult> {
+
+    /**
+     * Fetch all fonts.
+     * @param fontOptions - The font options.
+     * @returns {Promise<{ success: FetchFontsResult, errors: Array<Family> }>} A promise that resolves with the downloaded fonts.
+     */
+    async all(fontOptions?: Partial<FontOptions & FetchFontOptions>): Promise<{ success: FetchFontsResult, errors: Array<Family> }> {
       const options = mergeDeep(baseOptions, normalizeFontOptions(fontOptions)) as ResolvedGoogleFontsFetchOptions
       if (options.chunk.emptyDir) {
         await fs.rm(options.outDir, { recursive: true, force: true })
@@ -185,7 +191,8 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
       const metadata = JSON.parse((await fs.readFile(metadataPath, 'utf-8'))) as Metadata
       const families = metadata.familyMetadataList
       const chunkFamilies: Array<Array<Family>> = chunk(families, baseOptions.chunk.size)
-      const result: FetchFontsResult = []
+      const success: FetchFontsResult = []
+      const errors: Array<Family> = []
       for (let i = 0; i < chunkFamilies.length; i++) {
         const multiple = chunkFamilies[i].map((item) => {
           const { family: name, fonts } = item
@@ -200,26 +207,38 @@ export function createGoogleFontsFetch(defaultOptions: GoogleFontsFetchOptions):
           extend(fontOptions, { css: { write: false, merge: false } })
         }
 
-        let multipleResult
+        let multipleResult: FetchFontsResult = []
         try {
           multipleResult = await context.multiple(multiple, fontOptions)
         }
         catch (e) {
-          multipleResult = await onError(multiple, fontOptions || {}, options.chunk.retry, options.chunk.retryDelay)
+          try {
+            multipleResult = await onError(multiple, fontOptions || {}, options.chunk.retry, options.chunk.retryDelay)
+          }
+          catch (e) {
+            errors.push(...chunkFamilies[i])
+            multipleResult = []
+          }
         }
 
-        result.push(...multipleResult)
+        if (multipleResult.length > 0) {
+          success.push(...multipleResult)
+        }
+
         if (baseOptions.chunk.delay) {
           await delay(baseOptions.chunk.delay)
         }
       }
 
       if (options.css.write && options.css.merge) {
-        const fonts = mergeFontCss(result)
+        const fonts = mergeFontCss(success)
         await writeFontCss('all', fonts, options.outDir)
       }
 
-      return result
+      return {
+        success,
+        errors,
+      }
     },
   }
 
